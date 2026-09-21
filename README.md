@@ -1,35 +1,45 @@
-# Actividad Semana 2 - Programación Orientada a Objetos
+# Quantum Core - Sistema de Transacciones
 
-## Refactorización de transacciones de PE a POO
+Proyecto integrador del modulo **Fundamentos de Software** (122618),
+Ingenieria de Sistemas, CEIPA.
+Docente: Simon Pelaez Loaiza.
 
-### 1. Análisis de fragilidad
+## Autores
 
-En la Semana 1 se utilizó Programación Estructurada (PE) para leer y procesar las transacciones. Los datos de cada transacción se almacenaban en diccionarios con los campos ID, Tipo y Monto.
+- Juana Rios
 
-Además, la lógica estaba separada en diferentes funciones: una función para cargar las transacciones, otra para calcular el valor total y otra para filtrar las transacciones por categoría.
+## Descripcion
 
-Esta separación puede generar un riesgo de debugging cuando se necesiten manejar 10 tipos de transacciones diferentes. Si los datos o su estructura cambian, sería necesario revisar y modificar diferentes funciones del programa para evitar errores.
+Sistema que procesa transacciones financieras (credito, debito y copago).
+A lo largo de las semanas 3 a 5 se aplicaron:
 
-Por ejemplo, la función que calcula el valor total necesita conocer que el monto se encuentra en el campo "Monto", mientras que la función que filtra necesita conocer que el tipo está almacenado en el campo "Tipo".
+- **POO:** encapsulamiento, herencia y polimorfismo.
+- **Principios SOLID:** analisis de SRP y OCP.
+- **Confiabilidad:** manejo de excepciones con `try-except`.
+- **Interoperabilidad:** serializacion y deserializacion con JSON.
+- **DevOps:** control de versiones con Git y publicacion en GitHub.
 
-Al tener los datos separados de la lógica, aumenta el riesgo de modificar una parte del programa y afectar otra.
+## Estructura del repositorio
 
-Por esta razón, se realizó una refactorización utilizando Programación Orientada a Objetos (POO), agrupando los datos y comportamientos relacionados dentro de una clase.
+| Ruta | Contenido |
+|------|-----------|
+| `transaccion_poo_v1.py` | Semana 3 - Actividad 1: pilares de POO |
+| `transacciones.txt` | Datos de prueba (formato `ID,TIPO,MONTO`) |
+| `semana4/robustez_try_except.py` | Semana 4 - Actividad 1: recuperacion con try-except |
+| `semana4/serializacion_json.py` | Semana 4 - Actividad 2: serializacion JSON |
+| `semana4/transacciones_corruptas.txt` | Datos de prueba con errores a proposito |
+| `docs/Informe_Integrador_Quantum_Core.docx` | Informe en formato APA (incluye el analisis SOLID y la configuracion de Git) |
 
-### 2. Definición de la clase Transaccion
+## Como ejecutar
 
-Se creó la clase `Transaccion`, la cual representa una entidad del sistema.
+Requiere Python 3.
 
-La clase utiliza el constructor `__init__` para encapsular los datos de cada transacción como atributos del objeto:
+```bash
+# Semana 3
+python transaccion_poo_v1.py
 
-- ID
-- Tipo
-- Monto
-
-El constructor utilizado es:
-
-python
-def __init__(self, id, tipo, monto):
-    self.id = id
-    self.tipo = tipo
-    self.monto = monto
+# Semana 4 (desde la carpeta semana4)
+cd semana4
+python robustez_try_except.py
+python serializacion_json.py
+```
